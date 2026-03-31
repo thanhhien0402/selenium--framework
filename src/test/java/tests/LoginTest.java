@@ -1,15 +1,15 @@
 package tests;
 
 import framework.base.BaseTest;
-import framework.pages.*;
+import framework.pages.InventoryPage;
+import framework.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {
 
     @Test
-    public void testLoginSuccess(){
-
+    public void testLoginSuccess() {
         LoginPage login = new LoginPage(getDriver());
 
         InventoryPage inventory = login.login(
@@ -17,12 +17,11 @@ public class LoginTest extends BaseTest {
                 "secret_sauce"
         );
 
-        Assert.assertTrue(false, "Intentional failure for CI demonstration");
+        Assert.assertTrue(inventory.isLoaded(), "Trang inventory chưa load");
     }
 
     @Test
-    public void testLoginFail(){
-
+    public void testLoginFail() {
         LoginPage login = new LoginPage(getDriver());
 
         login.loginExpectingFailure(
@@ -30,6 +29,6 @@ public class LoginTest extends BaseTest {
                 "wrong"
         );
 
-        Assert.assertTrue(login.isErrorDisplayed());
+        Assert.assertTrue(login.isErrorDisplayed(), "Thông báo lỗi không hiển thị");
     }
 }
