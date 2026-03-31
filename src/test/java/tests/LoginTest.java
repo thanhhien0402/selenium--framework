@@ -17,7 +17,7 @@ public class LoginTest extends BaseTest {
                 "secret_sauce"
         );
 
-        Assert.assertTrue(inventory.isLoaded());
+        Assert.assertTrue(false, "Intentional failure for CI demonstration");
     }
 
     @Test

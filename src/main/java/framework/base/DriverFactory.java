@@ -24,7 +24,6 @@ public class DriverFactory {
 
     private static WebDriver createChromeDriver(boolean headless) {
         WebDriverManager.chromedriver().setup();
-
         ChromeOptions options = new ChromeOptions();
 
         if (headless) {
@@ -32,10 +31,8 @@ public class DriverFactory {
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
             options.addArguments("--window-size=1920,1080");
-            System.out.println("[DriverFactory] Running Chrome in HEADLESS CI mode");
         } else {
             options.addArguments("--start-maximized");
-            System.out.println("[DriverFactory] Running Chrome in LOCAL mode");
         }
 
         return new ChromeDriver(options);
@@ -43,14 +40,10 @@ public class DriverFactory {
 
     private static WebDriver createFirefoxDriver(boolean headless) {
         WebDriverManager.firefoxdriver().setup();
-
         FirefoxOptions options = new FirefoxOptions();
 
         if (headless) {
             options.addArguments("-headless");
-            System.out.println("[DriverFactory] Running Firefox in HEADLESS CI mode");
-        } else {
-            System.out.println("[DriverFactory] Running Firefox in LOCAL mode");
         }
 
         return new FirefoxDriver(options);
