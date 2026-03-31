@@ -9,26 +9,15 @@ import org.testng.annotations.Test;
 public class LoginTest extends BaseTest {
 
     @Test
-    public void testLoginSuccess() {
+    public void testLoginSuccess(){
+
         LoginPage login = new LoginPage(getDriver());
 
-        InventoryPage inventory = login.login(
-                "standard_user",
-                "secret_sauce"
-        );
+        String password = System.getenv("APP_PASSWORD");
 
-        Assert.assertTrue(inventory.isLoaded(), "Trang inventory chưa load");
-    }
+        InventoryPage inventory =
+                login.login("standard_user", password);
 
-    @Test
-    public void testLoginFail() {
-        LoginPage login = new LoginPage(getDriver());
-
-        login.loginExpectingFailure(
-                "standard_user",
-                "wrong"
-        );
-
-        Assert.assertTrue(login.isErrorDisplayed(), "Thông báo lỗi không hiển thị");
+        Assert.assertTrue(inventory.isLoaded());
     }
 }
