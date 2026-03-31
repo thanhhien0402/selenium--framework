@@ -12,8 +12,11 @@ public class CartTest extends BaseTest {
 
         LoginPage login = new LoginPage(getDriver());
 
+        String username = System.getenv("APP_USERNAME");
+        String password = System.getenv("APP_PASSWORD");
+
         InventoryPage inventory =
-                login.login("standard_user","secret_sauce");
+                login.login(username, password);
 
         inventory.addFirstItemToCart();
 
